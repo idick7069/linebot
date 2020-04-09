@@ -13,13 +13,14 @@ var bot = linebot({
     if(event.message.type == 'text'){
       bot.reply(event.replyToken,"你是不是說了=>"+ event.message.text)
       console.log("uid => " +event.source.userId)
-      bot.getProfile(event.source.userId)
-      .then((profile) => {
+      bot.getProfile(event.source.userId).then((profile) => {
         console.log(profile.displayName);
         console.log(profile.userId);
         console.log(profile.pictureUrl);
         console.log(profile.statusMessage);
-      })
+      }).catch((error) =>{
+        console.log("error")
+      });
       bot.push(event.source.userId,"嗨 " +bot.getUserProfile(event.source.userId).displayName)
     }
   });
