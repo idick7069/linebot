@@ -14,9 +14,10 @@ var bot = linebot({
       bot.reply(event.replyToken,"你是不是說了=>"+ event.message.text)
       console.log("uid => " +event.source.userId)
       event.source.profile().then(function (profile) {
-        event.reply('Hello ' + profile.displayName);
+        console.log(profile.displayName)
+        bot.push(event.source.userId,"嗨 " +bot.getUserProfile(event.source.userId).displayName)
       });
-      bot.push(event.source.userId,"嗨 " +bot.getUserProfile(event.source.userId).displayName)
+      // bot.push(event.source.userId,"嗨 " +bot.getUserProfile(event.source.userId).displayName)
     }
   });
   const linebotParser = bot.parser();
