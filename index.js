@@ -10,6 +10,9 @@ var bot = linebot({
   
   bot.on('message', function(event) {
     console.log(event); //把收到訊息的 event 印出來看看
+    if(event.message.type == 'text'){
+      bot.reply(event.replyToken,"你是不是說了=>"+ event.message.text)
+    }
   });
   const linebotParser = bot.parser();
   app.post('/', linebotParser);
