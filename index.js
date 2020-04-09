@@ -15,7 +15,7 @@ var bot = linebot({
       console.log("uid => " +event.source.userId)
       event.source.profile().then(function (profile) {
         console.log(profile.displayName)
-        bot.push(event.source.userId,"嗨 " +bot.getUserProfile(event.source.userId).displayName)
+        bot.push(event.source.userId,"嗨 " +profile.displayName)
       });
       // bot.push(event.source.userId,"嗨 " +bot.getUserProfile(event.source.userId).displayName)
     }
