@@ -12,6 +12,7 @@ var bot = linebot({
     console.log(event); //把收到訊息的 event 印出來看看
     if(event.message.type == 'text'){
       bot.reply(event.replyToken,"你是不是說了=>"+ event.message.text)
+      console.log(bot.getUserProfile(event.source.userId))
       bot.push(event.source.userId,"嗨 " +bot.getUserProfile(event.source.userId).displayName)
     }
   });
