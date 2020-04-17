@@ -6,8 +6,9 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "concurrently \"npm run build\" \"node server/app.js\"",
-    "build": "node build/build.js"
+    "start": "node server/app.js",
+    "build": "node build/build.js",
+    "startAll":"concurrently \"npm run build\" \"node server/app.js\""
   },
   "dependencies": {
     "express": "^4.17.1",
