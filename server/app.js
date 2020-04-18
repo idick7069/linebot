@@ -30,11 +30,11 @@ var bot = linebot({
 /*
 載入靜態頁面
 */
-app.use(express.static(__dirname +"/dist"));
+app.use(express.static(__dirname +"../dist"));
 
 // 首頁
 app.get('/', function(req, res){
-	res.sendFile(__dirname+'/dist/index.html');
+	res.sendFile(__dirname+'/index.html');
 	
 });
   
