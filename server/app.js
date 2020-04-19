@@ -23,6 +23,7 @@ var bot = linebot({
   });
   const linebotParser = bot.parser();
   app.post('/line', linebotParser);
+  
   app.use(express.static(__dirname + "../dist/"));
   app.get('/static', function (req, res) {
     res.sendFile(path.join(__dirname, '../dist/index.html'))
