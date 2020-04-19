@@ -23,21 +23,16 @@ var bot = linebot({
   });
   const linebotParser = bot.parser();
   app.post('/line', linebotParser);
-//   app.get('/static', function (req, res) {
-//     res.sendFile(path.join(__dirname, '../dist', 'index.html'))
-// })
+  app.use(express.static(__dirname + "../dist/"));
+  app.get('/static', function (req, res) {
+    res.sendFile(path.join(__dirname, '../dist/index.html'))
+})
 //   app.use('/public',express.static(path.join(__dirname, 'dist'))) 
 /*
 載入靜態頁面
 */
-app.use(express.static(__dirname +"../dist"));
 
-// 首頁
-app.get('/', function(req, res){
-	res.sendFile(__dirname+'/index.html');
-	
-});
-  
+
   //因為 express 預設走 port 3000，而 heroku 上預設卻不是，要透過下列程式轉換
   var server = app.listen(process.env.PORT || 8080, function() {
     var port = server.address().port;
