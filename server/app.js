@@ -1,6 +1,7 @@
 var linebot = require('linebot');
 var express = require('express');
 var path = require('path')
+var serveStatic = require('serve-static')
 var app = express();
 
 var bot = linebot({
@@ -24,10 +25,15 @@ var bot = linebot({
   const linebotParser = bot.parser();
   app.post('/line', linebotParser);
   
-  app.use(express.static(__dirname + "../dist/"));
-  app.get('/static', function (req, res) {
-    res.sendFile(path.join(__dirname, '../dist/index.html'))
-})
+  app.use('/',serveStatic(path.join(__dirname,'../dist')))
+  // app.use(express.static(__dirname + "../dist"));
+
+  app.get(/.*/, function (req, res) {
+    res.sendFile(path.join(__dirname, '/dist/index.html'))
+  })
+//   app.get('/static', function (req, res) {
+//     res.sendFile(path.join(__dirname, '../dist/index.html'))
+// })
 //   app.use('/public',express.static(path.join(__dirname, 'dist'))) 
 /*
 載入靜態頁面
