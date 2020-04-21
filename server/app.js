@@ -17,6 +17,7 @@ var bot = linebot({
       console.log("uid => " +event.source.userId)
       event.source.profile().then(function (profile) {
         console.log(profile.displayName)
+        console.log(JSON.stringify(profile))
         bot.push(event.source.userId,"嗨 " +profile.displayName)
       });
       // bot.push(event.source.userId,"嗨 " +bot.getUserProfile(event.source.userId).displayName)
@@ -45,3 +46,4 @@ var bot = linebot({
     var port = server.address().port;
     console.log("App now running on port", port);
   });
+
