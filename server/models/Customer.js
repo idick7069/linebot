@@ -7,7 +7,7 @@ var Customer = new Schema({
     customer_picture_url: String
 });
 
-Customer.methods.findCusomter = function(customerId) {
+Customer.statics.findCusomter = function(customerId) {
     var name = Customer.findOne({
       customer_id: customerId
     }).exec(function (err, customer) {
@@ -20,7 +20,7 @@ Customer.methods.findCusomter = function(customerId) {
       return false
     }
   };
-Customer.methods.createCustomer = function(customerId,customerName){
+Customer.statics.createCustomer = function(customerId,customerName){
     Customer.init()
     Customer.create({
       customer_id: customerId,
