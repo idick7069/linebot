@@ -10,7 +10,7 @@ var Message = new Schema({
     }
 });
 
-function createMessage(customerId, content) {
+Message.methods.createMessage = function(customerId, content) {
     Message.init()
     Message.create({
       customer_id: customerId,
