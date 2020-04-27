@@ -3,6 +3,7 @@ var linebot = require('linebot');
 var Message = require('../models/Message')
 var Customer = require('../models/Customer')
 var app = express();
+var router = express.Router();
 
 var bot = linebot({
   channelId: '1610094615',
@@ -27,7 +28,7 @@ bot.on('message', function (event) {
 });
 
 const linebotParser = bot.parser();
-app.post('/', linebotParser);
+router.post('/', linebotParser);
 
 
 module.exports = linebotParser;
