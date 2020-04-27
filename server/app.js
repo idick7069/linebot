@@ -5,7 +5,7 @@ var serveStatic = require('serve-static')
 var Api = require('./routes/api')
 var app = express();
 var router = express.Router();
-var lineApi = require('../routes/lineApi')
+var lineApi = require('./routes/lineApi')
 
 var bot = linebot({
   channelId: '1610094615',

@@ -1,8 +1,8 @@
 var express = require('express');
 var app = express();
 var router = express.Router();
-var customerApi = require('../customerApi')
-var messageApi = require('../messageApi')
+var customerApi = require('./customerApi')
+var messageApi = require('./messageApi')
 
 
 
