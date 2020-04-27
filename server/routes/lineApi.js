@@ -30,7 +30,11 @@ bot.on('message', function (event) {
 const linebotParser = bot.parser();
 router.post('/', linebotParser);
 
+router.get('/', function (req, res, next) {
+  res.send('line webook connected')
+});
 
-module.exports = linebotParser;
+
+module.exports = router;
 
 // bot.push(event.source.userId,"嗨 " +bot.getUserProfile(event.source.userId).displayName)
