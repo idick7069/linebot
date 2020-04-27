@@ -2,8 +2,8 @@ var express = require('express');
 var db = require('../db');
 var app = express();
 var router = express.Router();
-var Customer = require('../models/Customer')
-var Message = require('../models/Message')
+var Customer = require('./models/Customer')
+var Message = require('./models/Message')
 
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
