@@ -24,7 +24,6 @@ bot.on('message', function (event) {
         if (err) {
           return handleError(err);
         } else {
-          console.log('The customer is %s', customer.customer_name);
           Customer.init()
           Customer.create({
             customer_id: event.source.userId,
