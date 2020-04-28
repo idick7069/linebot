@@ -21,20 +21,23 @@ bot.on('message', function (event) {
       Customer.findOne({
         customer_id: event.source.userId
       }).exec(function (err, customer) {
-        if (err) return handleError(err);
-        console.log('The customer is %s', customer.customer_name);
-        Customer.init()
-        Customer.create({
-          customer_id: event.source.userId,
-          customer_name: profile.displayName
-        }, function (err, awesome_instance) {
-          if (err) {
-            console.log(err)
-          } else {
-            console.log('新建顧客成功')
-          }
-          // saved!
-        });
+        if (err) {
+          return handleError(err);
+        } else {
+          console.log('The customer is %s', customer.customer_name);
+          Customer.init()
+          Customer.create({
+            customer_id: event.source.userId,
+            customer_name: profile.displayName
+          }, function (err, awesome_instance) {
+            if (err) {
+              console.log(err)
+            } else {
+              console.log('新建顧客成功')
+            }
+            // saved!
+          });
+        }
       })
       Message.init()
       Message.create({
