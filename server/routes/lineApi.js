@@ -38,8 +38,8 @@ bot.on('message', function (event) {
       })
       Message.init()
       Message.create({
-        customer_id: customerId,
-        message_content: content
+        customer_id: event.source.userId,
+        message_content: event.message.text
       }, function (err, awesome_instance) {
         if (err) {
           console.log(err)
