@@ -24,18 +24,20 @@ bot.on('message', function (event) {
         if (err) {
           return handleError(err);
         } else {
-          Customer.init()
-          Customer.create({
-            customer_id: event.source.userId,
-            customer_name: profile.displayName
-          }, function (err, awesome_instance) {
-            if (err) {
-              console.log(err)
-            } else {
-              console.log('新建顧客成功')
-            }
-            // saved!
-          });
+          if (!customer) {
+            Customer.init()
+            Customer.create({
+              customer_id: event.source.userId,
+              customer_name: profile.displayName
+            }, function (err, awesome_instance) {
+              if (err) {
+                console.log(err)
+              } else {
+                console.log('新建顧客成功')
+              }
+              // saved!
+            });
+          }
         }
       })
       Message.init()

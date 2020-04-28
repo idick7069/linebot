@@ -33,6 +33,21 @@ router.get('/:name', async (req, res) => {
     });
 });
 
+router.delete('/:id', async (req, res) => {
+  Customer.init()
+      Customer.findOneAndDelete({
+          customer_id:req.params.id, 
+          }, function (err, awesome_instance) {
+      if (err){
+          console.log(err)
+      }else{
+          // const customers = await Customer.find()
+          // res.send(customers)
+          console.log('刪除顧客成功')
+      }
+  });
+});
+
 
 router.get('/123', function (req, res, next) {
     res.send('hello world2')
