@@ -11,7 +11,7 @@ router.use(function timeLog(req, res, next) {
     next();
 });
 
-router.use('/', async (req, res) => {
+router.get('/', async (req, res) => {
     const customers = await Customer.find()
     res.send(customers)
     console.log(customers)
@@ -30,8 +30,7 @@ router.get('/:name', async (req, res) => {
             // const customers = await Customer.find()
             // res.send(customers)
         }
-        // saved!
-      });
+    });
 });
 
 

@@ -8,7 +8,7 @@ var Customer = new Schema({
 });
 
 Customer.statics.findCusomter = function(customerId) {
-    var name = Customer.findOne({
+    var name = this.findOne({
       customer_id: customerId
     }).exec(function (err, customer) {
       if (err) return handleError(err);
@@ -21,8 +21,8 @@ Customer.statics.findCusomter = function(customerId) {
     }
   };
 Customer.statics.createCustomer = function(customerId,customerName){
-    Customer.init()
-    Customer.create({
+    this.init()
+    this.create({
       customer_id: customerId,
       customer_name: customerName
     }, function (err, awesome_instance) {

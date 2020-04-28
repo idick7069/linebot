@@ -18,11 +18,35 @@ bot.on('message', function (event) {
     event.source.profile().then(function (profile) {
       console.log(JSON.stringify(profile))
       bot.push(event.source.userId, "嗨 " + profile.displayName)
-      const customerExists = Customer.findCusomter(event.source.userId)
-      if (!customerExists) {
-        Customer.createCustomer(event.source.userId,profile.displayName)
-      }
-      createMessage(event.source.userId, event.message.text)
+      Customer.findOne({
+        customer_id: event.source.userId
+      }).exec(function (err, customer) {
+        if (err) return handleError(err);
+        console.log('The customer is %s', customer.customer_name);
+        Customer.init()
+        Customer.create({
+          customer_id: event.source.userId,
+          customer_name: profile.displayName
+        }, function (err, awesome_instance) {
+          if (err) {
+            console.log(err)
+          } else {
+            console.log('新建顧客成功')
+          }
+          // saved!
+        });
+      })
+      Message.init()
+      Message.create({
+        customer_id: customerId,
+        message_content: content
+      }, function (err, awesome_instance) {
+        if (err) {
+          console.log(err)
+        } else {
+          console.log('紀錄成功')
+        }
+      });
     });
   }
 });
