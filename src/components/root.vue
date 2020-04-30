@@ -1,57 +1,62 @@
 <template>
     <div class="hello">
         <el-container>
-            <el-aside width="200px">
-                <!-- Aside content -->
+            <el-header height="80px">
+
+                <!-- Header content -->
+                <el-row :gutter="20">
+                    <el-col :span="6">
+                        <div class="grid-content">
+                            <h1>Line 後台管理系統</h1>
+                        </div>
+                    </el-col>
+                </el-row>
+            </el-header>
+            <el-container>
+                <el-button class="collapse_btn" v-on:click="navCollapse">{{collapseText}}</el-button>
+                <el-aside width="200px" el-col :span="20">
+                    <!-- Aside content -->
                     <el-col :span="24">
-                        <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen"
-                            @close="handleClose" background-color="#545c64" text-color="#fff"
-                            active-text-color="#ffd04b">
-                            <el-submenu index="1">
-                                <template slot="title">
-                                    <i class="el-icon-location"></i>
-                                    <span>導航一</span>
-                                </template>
-                                <el-menu-item-group>
-                                    <template slot="title">分组一</template>
-                                    <el-menu-item index="1-1">選項1</el-menu-item>
-                                    <el-menu-item index="1-2">選項2</el-menu-item>
-                                </el-menu-item-group>
-                                <el-menu-item-group title="分组2">
-                                    <el-menu-item index="1-3">選項3</el-menu-item>
-                                </el-menu-item-group>
-                                <el-submenu index="1-4">
-                                    <template slot="title">選項4</template>
-                                    <el-menu-item index="1-4-1">選項1</el-menu-item>
-                                </el-submenu>
-                            </el-submenu>
+                        <el-menu default-active="3" class="el-menu-vertical-demo" @open="handleOpen"
+                            @close="handleClose" text-color="#707070" active-text-color="#409EFF"
+                            :collapse="isCollapse">
+                            <el-menu-item index="1">
+                                <i class="el-icon-s-custom"></i>
+                                <span slot="title">帳號總覽</span>
+                            </el-menu-item>
                             <el-menu-item index="2">
-                                <i class="el-icon-menu"></i>
-                                <span slot="title">導航二</span>
+                                <i class="el-icon-s-comment"></i>
+                                <span slot="title">通訊聊天</span>
                             </el-menu-item>
-                            <el-menu-item index="3" disabled>
-                                <i class="el-icon-document"></i>
-                                <span slot="title">導航三</span>
-                            </el-menu-item>
+                            <el-submenu index="3">
+                                <template slot="title">
+                                    <i class="el-icon-s-order"></i>
+                                    <span>訂單管理</span>
+                                </template>
+                                <el-menu-item index="1-1">訂單確認</el-menu-item>
+                                <el-menu-item index="1-2">訂單取消</el-menu-item>
+                                <el-menu-item index="1-3">訂單刪除</el-menu-item>
+                            </el-submenu>
                             <el-menu-item index="4">
-                                <i class="el-icon-setting"></i>
-                                <span slot="title">導航四</span>
+                                <i class="el-icon-date"></i>
+                                <span slot="title">訂單時程</span>
+                            </el-menu-item>
+                            <el-menu-item index="5" disabled>
+                                <i class="el-icon-notebook-2"></i>
+                                <span slot="title">帳號管理</span>
                             </el-menu-item>
                         </el-menu>
                     </el-col>
-                </el-row>
-            </el-aside>
-            <el-container>
-                <el-header height="">
-                    <!-- Header content -->
-                </el-header>
+                    </el-row>
+                </el-aside>
                 <el-main height="">
                     <!-- Main content -->
+                    <h2>{{ msg }}</h2>
                 </el-main>
             </el-container>
+            <el-footer height="80px">
+            </el-footer>
         </el-container>
-
-        <h1>{{ msg }}</h1>
     </div>
 </template>
 
@@ -60,7 +65,10 @@
         name: 'root',
         data() {
             return {
-                msg: 'Welcome to Your Vue.js App Root'
+                msg: 'Welcome to Your Vue.js App Root',
+                circleUrl: "https://api.adorable.io/avatars/285/abott@adorable.png",
+                isCollapse: false,
+                collapseText: "收起"
             }
         },
         methods: {
@@ -69,6 +77,14 @@
             },
             handleClose(key, keyPath) {
                 console.log(key, keyPath);
+            },
+            navCollapse: function () {
+                this.isCollapse = !this.isCollapse
+                if (this.isCollapse) {
+                        this.collapseText = "展開"
+                } else {
+                       this.collapseText = "收起"
+                }
             }
         }
     }
@@ -76,22 +92,31 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    h1,
-    h2 {
-        font-weight: normal;
+    .el-header,
+    .el-footer {
+        background-color: #409EFF;
+        color: #333;
+        text-align: center;
+        line-height: 60px;
     }
 
-    ul {
-        list-style-type: none;
-        padding: 0;
+    h1 {
+        color: #ffffff;
+        text-align: left;
+        margin-left: 10px;
     }
 
-    li {
-        display: inline-block;
-        margin: 0 10px;
+    .el-aside {
+        margin-top: 40px;
+        margin-bottom: 40px;
     }
 
-    a {
-        color: #42b983;
+    .collapse_btn {
+        color: #409EFF;
+    }
+
+    .grid-content {
+        color: #ffffff;
+        margin: 0px auto;
     }
 </style>
