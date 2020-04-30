@@ -12,7 +12,9 @@
     "devStart": "nodemon server/app.js"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "concurrently": "^5.1.0",
+    "element-ui": "^2.13.1",
     "express": "^4.17.1",
     "linebot": "^1.5.3",
     "mongodb": "^3.5.6",

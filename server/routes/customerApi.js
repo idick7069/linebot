@@ -33,10 +33,10 @@ router.get('/:name', async (req, res) => {
     });
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/', async (req, res) => {
   Customer.init()
       Customer.findOneAndDelete({
-          customer_id:req.params.id, 
+          customer_id:req.query.id, 
           }, function (err, awesome_instance) {
       if (err){
           console.log(err)
@@ -44,6 +44,7 @@ router.delete('/:id', async (req, res) => {
           // const customers = await Customer.find()
           // res.send(customers)
           console.log('刪除顧客成功')
+          res.send('刪除顧客成功')
       }
   });
 });
