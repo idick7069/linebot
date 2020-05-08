@@ -6,6 +6,18 @@ var Api = require('./routes/api')
 var app = express();
 var router = express.Router();
 var lineApi = require('./routes/lineApi')
+var cors = require('cors');
+var app = express();
+
+const corsOptions = {
+  origin: [
+    'http://localhost:8081',
+  ],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
 
 var bot = linebot({
   channelId: '1610094615',

@@ -6,9 +6,12 @@ import router from './router/index.js'
 import ElementUI from 'element-ui';
 import locale from 'element-ui/lib/locale/lang/zh-TW'
 import 'element-ui/lib/theme-chalk/index.css';
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 Vue.config.productionTip = false
-Vue.use(ElementUI, { locale })
+Vue.prototype.$axios = axios
+Vue.use(ElementUI, { locale },VueAxios, axios)
 
 /* eslint-disable no-new */
 new Vue({
